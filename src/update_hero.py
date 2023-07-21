@@ -1,5 +1,4 @@
-from database.connection import execute_query, create_connection
-import psycopg2
+from database.connection import execute_modify
 
 
 
@@ -15,6 +14,6 @@ def update_hero(chosen_hero, name, about_me, biography):
         SET name = %s, about_me = %s, biography = %s
         WHERE name = %s
         """
-    execute_query(quit,(chosen_hero, name, about_me, biography))
+    execute_modify(query,(chosen_hero, name, about_me, biography))
 
 update_hero(chosen_hero, new_name, new_about_me, new_biography)

@@ -1,5 +1,4 @@
-from database.connection import execute_query, create_connection
-import psycopg2
+from database.connection import execute_modify
 
 def delete_hero(): 
     name = input("Who would you like to delete?: ")
@@ -7,7 +6,7 @@ def delete_hero():
         DELETE FROM heroes 
         WHERE name = (%s);
         """
-    execute_query(query, (name,))
+    execute_modify(query, (name,))
 
 delete_hero()
 

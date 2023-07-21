@@ -20,10 +20,24 @@ def execute_query(query, params=None):
     cursor = connection.cursor()
     try:
         cursor.execute(query, params)
-        connection.commit()
         print("Query executed successfully")
-        connection.close()
-        return cursor
+        return cursor.fetchall()
     except OSError as e:
         print(f"The error '{e}' occurred or the hero name is already taken")
-        #return connection.close()
+        return []
+    finally:
+        connection.close()
+
+def execute_modify(query, params=None):
+    connection = create_connection("postgres", "postgres", "postgres")
+    cursor = connection.cursor()
+    try:
+        cursor.execute(query, params)
+        connection.commit()
+        print("Query executed successfully")
+    except OSError as e:
+        print(f"The error '{e}' occurred or the hero name is already taken")
+    finally:
+        connection.close()
+
+        
