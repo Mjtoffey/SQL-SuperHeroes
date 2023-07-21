@@ -3,14 +3,18 @@ import psycopg2
 
 
 
-def update_hero(about_me):
-    about_me = input ("Any new developments?: ")
+
+chosen_hero = input("Who goes there?: ")
+new_name = input("How about a new alias?: ")
+new_about_me = input("New profile?: ")
+new_biography = input("Might wanna make a new backstory while were at it: ")
+
+def update_hero(chosen_hero, name, about_me, biography):
     query = """
         UPDATE heroes
-        SET about_me = %s
-        WHERE %s = name
+        SET name = %s, about_me = %s, biography = %s
+        WHERE name = %s
         """
-    execute_query(query(about_me))
-    print("Heres your new info, now leave me alone")
+    execute_query(quit,(chosen_hero, name, about_me, biography))
 
-update_hero("")
+update_hero(chosen_hero, new_name, new_about_me, new_biography)
